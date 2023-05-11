@@ -11,12 +11,20 @@ class EmployeeRepository
   def initialize(csv_file_path)
     @csv_file_path = csv_file_path
     @employees = []
-    load_csv
+    load_csv if File.exist?(csv_file_path)
   end
 
   def find_by_username(username)
     # return an instance of Employee
     @employees.find { |employee| employee.username == username }
+  end
+
+  def find(id)
+    @employees.find { |employee| employee.id == id }
+  end
+
+  def all_riders
+    @employees.select { |employee| employee.rider? }
   end
 
   private

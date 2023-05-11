@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Employee
-  attr_reader :username, :password
+  attr_reader :username, :password, :role
+  attr_accessor :id
 
   # STATE/DATA
   # id       -> Integer
@@ -16,6 +17,10 @@ class Employee
   end
 
   # BEHAVIOR
+
+  def manager?
+    @role == 'manager'
+  end
 
   def rider?
     @role == 'rider'
